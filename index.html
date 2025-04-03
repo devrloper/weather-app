@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+                 body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBvmvfQGnZOPZ0s2dgGwYzFN_JxvNGCdwcxQ&s'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #input {
+            padding: 10px;
+            width: 200px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+</style>
+<body>
+    <div class="container">
+    <input type="text" placeholder="City" id="input" required>
+    <button onclick="buntton()">Search</button>
+<h1 id="result">city</h1>
+<h1 id="result1">Temperature</h1>
+<h1 id="result2">Humidity</h1>
+<h1 id="result4">Pressure</h1>
+<h1 id="result7">Cloudy</h1>
+<h1 id="result8">Country</h1>
+</div>
+    <script>
+         
+        function buntton() {
+            const input=document.getElementById('input').value;
+            const apiKey='546876f04d537d45bac75cb2d1970e4b';
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=${apiKey}&units=metric`;
+
+            fetch(url)
+            .then(response => response.json())
+            .then ((data=>{
+                console.log(data,'---->name');
+
+                document.getElementById('result').innerHTML=data.name;
+                console.log(data.name,'------>name1')
+                document.getElementById('result1').innerHTML=data.main.temp;
+                console.log(data.main.temp,'------>temp');
+                document.getElementById('result2').innerHTML=data.main.humidity;
+                console.log(data.main.humidity,'------>temp');
+              
+                document.getElementById('result4').innerHTML=data.main.pressure;
+                console.log(data.main.pressure,'------>temp');
+               
+              
+                document.getElementById('result7').innerHTML=data.clouds.all;
+                console.log(data.clouds.all,'------>temp');
+                document.getElementById('result8').innerHTML=data.sys.country;
+                console.log(data.sys.country,'------>temp');
+            }))
+           
+            // document.getElementById('input').value="";
+
+        }
+
+    </script>
+</body>
+</html>
